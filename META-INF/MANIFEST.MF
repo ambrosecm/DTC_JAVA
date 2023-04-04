@@ -2,12 +2,18 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTC_JAVA
 Bundle-SymbolicName: DTC_JAVA;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: dtc_java.Activator
+Bundle-Version: 1.0.0
+Bundle-Activator: dt.Activator
 Bundle-Vendor: DTC
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: javax.inject,
+ org.eclipse.osgi,
+ org.eclipse.jface,
+ org.eclipse.e4.ui.model.workbench,
+ org.eclipse.e4.ui.di,
+ org.eclipse.e4.ui.services,
+ org.eclipse.e4.core.di.annotations,
  org.eclipse.core.runtime
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Automatic-Module-Name: DTC.JAVA
-Import-Package: javax.inject
+Import-Package: javax.annotation;version="1.2.0"
 Bundle-ActivationPolicy: lazy
