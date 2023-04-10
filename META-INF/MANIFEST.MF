@@ -12,8 +12,11 @@ Require-Bundle: javax.inject,
  org.eclipse.e4.ui.di,
  org.eclipse.e4.ui.services,
  org.eclipse.e4.core.di.annotations,
- org.eclipse.core.runtime
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+ org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.ui.console,
+ org.eclipse.jdt.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: DTC.JAVA
-Import-Package: javax.annotation;version="1.2.0"
+Import-Package: javax.inject
 Bundle-ActivationPolicy: lazy
