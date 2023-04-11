@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: DTC_JAVA
 Bundle-SymbolicName: DTC_JAVA;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Activator: dt.Activator
 Bundle-Vendor: DTC
 Require-Bundle: javax.inject,
  org.eclipse.osgi,
@@ -15,7 +14,9 @@ Require-Bundle: javax.inject,
  org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.ui.console,
- org.eclipse.jdt.ui
+ org.eclipse.jdt.ui,
+ org.eclipse.e4.ui.workbench,
+ org.eclipse.help
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: DTC.JAVA
 Import-Package: javax.inject

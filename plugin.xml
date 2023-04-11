@@ -3,13 +3,37 @@
 <plugin>
 
    <extension
-         id="dtc_java.fragment"
-         point="org.eclipse.e4.workbench.model">
-      <fragment
-            apply="notexists"
-            uri="fragment.e4xmi">
-      </fragment>
+         point="org.eclipse.ui.views">
+      <category
+            id="DTC_JAVA"
+            name="Dtc Category">
+      </category>
+      <view
+            category="DTC_JAVA"
+            class="dtc_java.views.DtcView"
+            icon="icons/sample.png"
+            id="dtc_java.views.DtcView"
+            inject="true"
+            name="Dtc View">
+      </view>
    </extension>
-   
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="dtc_java.views.DtcView"
+               ratio="0.5"
+               relationship="right"
+               relative="org.eclipse.ui.views.ProblemView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
 
 </plugin>
