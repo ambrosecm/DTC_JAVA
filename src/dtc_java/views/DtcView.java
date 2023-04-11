@@ -27,21 +27,23 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.ViewForm;
+import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.widgets.ToolBar;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.layout.RowData;
+import org.eclipse.swt.custom.StackLayout;
+import swing2swt.layout.FlowLayout;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
-/**
- * This sample class demonstrates how to plug-in a new workbench view. The view
- * shows data obtained from the model. The sample creates a dummy model on the
- * fly, but a real implementation would connect to the model available either in
- * this or another plug-in (e.g. the workspace). The view is connected to the
- * model using a content provider.
- * <p>
- * The view uses a label provider to define how model objects should be
- * presented in the view. Each view can present the same model objects using
- * different labels and icons, if needed. Alternatively, a single label provider
- * can be shared between views in order to ensure that objects of the same type
- * are presented in the same way everywhere.
- * <p>
- */
 
 public class DtcView extends ViewPart {
 	public DtcView() {
@@ -54,9 +56,7 @@ public class DtcView extends ViewPart {
 
 	@Inject
 	IWorkbench workbench;
-	private Action action1;
-	private Action action2;
-	private Action doubleClickAction;
+	private Text text;
 	
 	class ViewLabelProvider extends LabelProvider implements ITableLabelProvider {
 		@Override
@@ -77,6 +77,105 @@ public class DtcView extends ViewPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
+		parent.setLayout(new GridLayout(9, false));
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		
+		Button btnNewButton = new Button(parent, SWT.NONE);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell(),SWT.OPEN);
+				fileDialog.setFilterNames(new String[] { "java文件 (*.java)" });//设置扩展名
+				fileDialog.setFilterExtensions(new String[] { "*.java" });//设置文件扩展名
+				String selectedFile = fileDialog.open();
+				text.setText(selectedFile);
+			}
+		});
+		btnNewButton.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		btnNewButton.setFont(SWTResourceManager.getFont("Microsoft YaHei UI", 9, SWT.NORMAL));
+		btnNewButton.setText("选择文件");
+		
+		text = new Text(parent, SWT.BORDER);
+		GridData gd_text = new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1);
+		gd_text.widthHint = 286;
+		text.setLayoutData(gd_text);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		
+		Button btnNewButton_1 = new Button(parent, SWT.CENTER);
+		btnNewButton_1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				//开始分析
+			}
+		});
+		GridData gd_btnNewButton_1 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+		gd_btnNewButton_1.widthHint = 123;
+		btnNewButton_1.setLayoutData(gd_btnNewButton_1);
+		btnNewButton_1.setText("Start Analyse");
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		new Label(parent, SWT.NONE);
+		
+		Label lblNewLabel = new Label(parent, SWT.BORDER | SWT.CENTER);
+		GridData gd_lblNewLabel = new GridData(SWT.FILL, SWT.FILL, false, false, 5, 1);
+		gd_lblNewLabel.widthHint = 188;
+		gd_lblNewLabel.heightHint = 262;
+		lblNewLabel.setLayoutData(gd_lblNewLabel);
+		
+		Label lblNewLabel_1 = new Label(parent, SWT.BORDER | SWT.CENTER);
+		GridData gd_lblNewLabel_1 = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1);
+		gd_lblNewLabel_1.heightHint = 208;
+		gd_lblNewLabel_1.widthHint = 197;
+		lblNewLabel_1.setLayoutData(gd_lblNewLabel_1);
 		makeActions();
 		hookContextMenu();
 		hookDoubleClickAction();
@@ -100,64 +199,26 @@ public class DtcView extends ViewPart {
 	}
 
 	private void fillLocalPullDown(IMenuManager manager) {
-		manager.add(action1);
 		manager.add(new Separator());
-		manager.add(action2);
 	}
 
 	private void fillContextMenu(IMenuManager manager) {
-		manager.add(action1);
-		manager.add(action2);
 		// Other plug-ins can contribute there actions here
 		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 	}
 
 	private void fillLocalToolBar(IToolBarManager manager) {
-		manager.add(action1);
-		manager.add(action2);
 	}
 
 	private void makeActions() {
-		action1 = new Action() {
-			public void run() {
-				showMessage("Action 1 executed");
-			}
-		};
-		action1.setText("Action 1");
-		action1.setToolTipText("Action 1 tooltip");
-		action1.setImageDescriptor(
-				PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
-
-		action2 = new Action() {
-			public void run() {
-				showMessage("Action 2 executed");
-			}
-		};
-		action2.setText("Action 2");
-		action2.setToolTipText("Action 2 tooltip");
-		action2.setImageDescriptor(workbench.getSharedImages().getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
-		doubleClickAction = new Action() {
-			public void run() {
-				// 创建文件选择对话框
-				FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell(),SWT.OPEN);
-				// 代开对话框，当对话框关闭时会返回选择的文件，没有选择返回null
-				String selectedFile = fileDialog.open();
-				IStructuredSelection selection = viewer.getStructuredSelection();
-				Object obj = selection.getFirstElement();
-				showMessage("Double-click detected on " + obj.toString()+selectedFile);
-			}
-		};
 	}
 
 	private void hookDoubleClickAction() {
 	}
 
-	private void showMessage(String message) {
-		MessageDialog.openInformation(viewer.getControl().getShell(), "Dtc View", message);
-	}
 
 	@Override
 	public void setFocus() {
-		viewer.getControl().setFocus();
+		
 	}
 }

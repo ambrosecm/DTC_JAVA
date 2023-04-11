@@ -21,3 +21,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: DTC.JAVA
 Import-Package: javax.inject
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ swing2swt.jar
