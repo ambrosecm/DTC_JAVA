@@ -43,6 +43,7 @@ import org.eclipse.swt.custom.StackLayout;
 import swing2swt.layout.FlowLayout;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.wb.swt.ResourceManager;
 
 
 public class DtcView extends ViewPart {
@@ -77,34 +78,11 @@ public class DtcView extends ViewPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
-		parent.setLayout(new GridLayout(9, false));
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
+		parent.setLayout(null);
 		
 		Button btnNewButton = new Button(parent, SWT.NONE);
+		btnNewButton.setImage(ResourceManager.getPluginImage("DTC_JAVA", "icons/releng_gears.gif"));
+		btnNewButton.setBounds(41, 96, 84, 27);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -115,67 +93,34 @@ public class DtcView extends ViewPart {
 				text.setText(selectedFile);
 			}
 		});
-		btnNewButton.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		btnNewButton.setFont(SWTResourceManager.getFont("Microsoft YaHei UI", 9, SWT.NORMAL));
 		btnNewButton.setText("选择文件");
 		
 		text = new Text(parent, SWT.BORDER);
-		GridData gd_text = new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1);
-		gd_text.widthHint = 286;
-		text.setLayoutData(gd_text);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
+		text.setBounds(143, 98, 295, 23);
 		
 		Button btnNewButton_1 = new Button(parent, SWT.CENTER);
+		btnNewButton_1.setImage(ResourceManager.getPluginImage("DTC_JAVA", "icons/releng_gears.gif"));
+		btnNewButton_1.setBounds(157, 153, 123, 27);
 		btnNewButton_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				//开始分析
 			}
 		});
-		GridData gd_btnNewButton_1 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
-		gd_btnNewButton_1.widthHint = 123;
-		btnNewButton_1.setLayoutData(gd_btnNewButton_1);
 		btnNewButton_1.setText("Start Analyse");
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
 		
 		Label lblNewLabel = new Label(parent, SWT.BORDER | SWT.CENTER);
-		GridData gd_lblNewLabel = new GridData(SWT.FILL, SWT.FILL, false, false, 5, 1);
-		gd_lblNewLabel.widthHint = 188;
-		gd_lblNewLabel.heightHint = 262;
-		lblNewLabel.setLayoutData(gd_lblNewLabel);
+		lblNewLabel.setBounds(41, 197, 224, 346);
 		
 		Label lblNewLabel_1 = new Label(parent, SWT.BORDER | SWT.CENTER);
-		GridData gd_lblNewLabel_1 = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1);
-		gd_lblNewLabel_1.heightHint = 208;
-		gd_lblNewLabel_1.widthHint = 197;
-		lblNewLabel_1.setLayoutData(gd_lblNewLabel_1);
+		lblNewLabel_1.setBounds(271, 197, 224, 346);
+		
+		Label lblNewLabel_2 = new Label(parent, SWT.BORDER | SWT.WRAP);
+		lblNewLabel_2.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
+		lblNewLabel_2.setFont(SWTResourceManager.getFont("Microsoft YaHei UI", 7, SWT.NORMAL));
+		lblNewLabel_2.setBounds(83, 22, 390, 34);
+		lblNewLabel_2.setText("针对Java程序在代码级别进行的增加语句、修改语句、删除语句等修复操作，采用静态分析技术分析出影响的变量、语句、路径、方法、类等程序成分，生成控制流图、数据流图、抽象语法树");
 		makeActions();
 		hookContextMenu();
 		hookDoubleClickAction();
