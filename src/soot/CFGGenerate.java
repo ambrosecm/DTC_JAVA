@@ -61,7 +61,7 @@ public class CFGGenerate extends BodyTransformer {
 		String[] soot_args = new String[3];
 	    //soot_args[0] = "-cp";
 	    soot_args[0] = "--soot-classpath";
-	    soot_args[1] = "E:\\Project\\GitHub\\DTC_JAVA\\src;E:\\Tools\\jdk1.7.0_80\\jre\\lib\\rt.jar";
+	    soot_args[1] = "E:\\Project\\eclipse_project\\DTC_JAVA\\src;E:\\Tools\\JDK\\jdk1.7.0_80\\jre\\lib\\rt.jar";
 	    soot_args[2] = "TriangleClass.Triangle";
 	    
 		soot.Main.main(soot_args);

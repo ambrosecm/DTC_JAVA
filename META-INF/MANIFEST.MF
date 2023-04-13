@@ -23,4 +23,7 @@ Import-Package: javax.inject
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  swing2swt.jar,
- lib/soot-2.5.0.jar
+ lib/soot-2.5.0.jar,
+ lib/JavaDataFlow-0.0.3.jar,
+ lib/javaparser-core-3.22.1.jar,
+ lib/javaparser-symbol-solver-core-3.22.1.jar

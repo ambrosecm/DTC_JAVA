@@ -19,5 +19,8 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="swing2swt.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/soot-2.5.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JavaDataFlow-0.0.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/javaparser-core-3.22.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/javaparser-symbol-solver-core-3.22.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

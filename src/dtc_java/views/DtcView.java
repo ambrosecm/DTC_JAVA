@@ -90,7 +90,7 @@ public class DtcView extends ViewPart {
 
 		Button btnNewButton = new Button(parent, SWT.NONE);
 		btnNewButton.setImage(ResourceManager.getPluginImage("DTC_JAVA", "icons/releng_gears.gif"));
-		btnNewButton.setBounds(41, 96, 84, 27);
+		btnNewButton.setBounds(41, 96, 96, 27);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -109,7 +109,7 @@ public class DtcView extends ViewPart {
 
 		Button btnNewButton_1 = new Button(parent, SWT.CENTER);
 		btnNewButton_1.setImage(ResourceManager.getPluginImage("DTC_JAVA", "icons/releng_gears.gif"));
-		btnNewButton_1.setBounds(98, 151, 123, 27);
+		btnNewButton_1.setBounds(98, 151, 131, 27);
 		btnNewButton_1.setText("Start Analyse");
 
 		Label lblNewLabel = new Label(parent, SWT.BORDER | SWT.CENTER);
@@ -121,7 +121,7 @@ public class DtcView extends ViewPart {
 		Label lblNewLabel_2 = new Label(parent, SWT.BORDER | SWT.WRAP);
 		lblNewLabel_2.setBackground(SWTResourceManager.getColor(255, 255, 240));
 		lblNewLabel_2.setFont(SWTResourceManager.getFont("Microsoft JhengHei", 7, SWT.NORMAL));
-		lblNewLabel_2.setBounds(83, 22, 390, 34);
+		lblNewLabel_2.setBounds(41, 22, 529, 34);
 		lblNewLabel_2.setText("针对Java程序在代码级别进行的增加语句、修改语句、删除语句等修复操作，采用静态分析技术分析出影响的变量、语句、路径、方法、类等程序成分，生成控制流图、数据流图、抽象语法树");
 
 		ProgressBar progressBar = new ProgressBar(parent, SWT.HORIZONTAL);
@@ -140,7 +140,7 @@ public class DtcView extends ViewPart {
 		String[] items = new String[] { "NONE", "控制流图CFG", "数据流图DFG", "抽象语法树AST" };
 		combo.setItems(items);
 		combo.setToolTipText("NONE");
-		combo.setBounds(207, 202, 109, 25);
+		combo.setBounds(198, 202, 131, 28);
 		combo.select(0);
 		combo.setText("NONE");
 		combo.addSelectionListener(new SelectionAdapter() {
