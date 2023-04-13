@@ -17,11 +17,11 @@ import com.github.javaparser.printer.DotPrinter;
 
 public class AstGeneratror {
 
-	public static void main(String[] args) throws Exception {
-		
+	public void generate(String filepath) throws Exception {
+		System.out.print("in 1111111111111111111");
         
         // 1. 转换的是完整的Java文件
-        String absolutePath = "E:\\Project\\GitHub\\DTC_JAVA\\src\\TriangleClass\\Triangle.java";
+        String absolutePath = filepath;
         ParseResult<CompilationUnit> result = new JavaParser().parse(Paths.get(absolutePath));
 		System.out.println(result.getResult().get());
         // 2. 转换的为部分代码片段

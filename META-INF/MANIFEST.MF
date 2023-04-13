@@ -22,4 +22,5 @@ Automatic-Module-Name: DTC.JAVA
 Import-Package: javax.inject
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
- swing2swt.jar
+ swing2swt.jar,
+ lib/soot-2.5.0.jar

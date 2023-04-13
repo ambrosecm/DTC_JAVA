@@ -24,7 +24,7 @@ import soot.util.cfgcmd.CFGToDotGraph;
 import soot.util.dot.DotGraph;
 
 
-public class Generate extends BodyTransformer {
+public class CFGGenerate extends BodyTransformer {
 
 	private static final String altClassPathOptionName = "alt-class-path";
 	private static final String graphTypeOptionName = "graph-type";
@@ -48,8 +48,8 @@ public class Generate extends BodyTransformer {
 		
 	}
 
-	public static void main(String[] args) {
-		Generate viewer = new Generate();
+	public void generate(String filepath) {
+		CFGGenerate viewer = new CFGGenerate();
 		Transform printTransform = new Transform("jtp.printcfg", viewer);
 		printTransform.setDeclaredOptions("enabled " + altClassPathOptionName + ' ' + graphTypeOptionName + ' '
 				+ irOptionName + ' ' + multipageOptionName + ' ' + briefLabelOptionName + ' ');

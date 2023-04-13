@@ -11,7 +11,7 @@ import model.DataFlowNode;
 
 public class DataFlowGraph {
 
-	public static void main(String[] args) {
+	public void generate(String filepath) {
 		// TODO Change this to the exact location of the project (where the .git file is located).
 	    String systemPath = "E:\\Project\\eclipse_JavaProject\\JavaDataFlowExample-main\\";
 	    System.out.println("================Don't forget to change your project path (" + systemPath + ")================");
