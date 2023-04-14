@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project default="plugin_export" name="build">
 	<target name="plugin_export">
-		<pde.exportPlugins destination="C:\Users\Administrator\Desktop" exportSource="true" exportSourceBundle="false" exportType="zip" filename="eclipse_project.zip" plugins="DTC_JAVA" useJARFormat="true"/>
+		<pde.exportPlugins destination="C:\Users\Administrator\Desktop" exportSource="true" exportSourceBundle="false" exportType="directory" plugins="DTC_JAVA" useJARFormat="true"/>
 	</target>
 </project>

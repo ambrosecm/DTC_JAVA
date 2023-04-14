@@ -20,11 +20,11 @@ public class AstGeneratror {
 	public void generate(String filepath) throws Exception {
 		System.out.print("in 1111111111111111111");
         
-        // 1. 转换的是完整的Java文件
+        // 1. java file
         String absolutePath = filepath;
         ParseResult<CompilationUnit> result = new JavaParser().parse(Paths.get(absolutePath));
 		System.out.println(result.getResult().get());
-        // 2. 转换的为部分代码片段
+        // 2. java code
 //        ParseResult<VariableDeclarationExpr> exprResult = new JavaParser().parseVariableDeclarationExpr("int x = 3");
 //        System.out.println(exprResult.getResult().get());
 //        YamlPrinter printer = new YamlPrinter(true);

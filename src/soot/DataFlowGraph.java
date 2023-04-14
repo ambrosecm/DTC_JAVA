@@ -13,11 +13,11 @@ public class DataFlowGraph {
 
 	public void generate(String filepath) {
 		// TODO Change this to the exact location of the project (where the .git file is located).
-	    String systemPath = "E:\\Project\\eclipse_JavaProject\\JavaDataFlowExample-main\\";
+	    String systemPath = "E:\\Project\\eclipse_project\\DTC_JAVA\\";
 	    System.out.println("================Don't forget to change your project path (" + systemPath + ")================");
 
-	    String projectPath = "JavaDataFlowExample\\src\\main\\java\\";
-	    String inputClass = "example/Example1.java";
+	    String projectPath = "src\\";
+	    String inputClass = "example\\Example1.java";
 	    StaticJavaDataFlow.getConfig().setProjectPaths(systemPath + projectPath);
 	    model.DataFlowGraph dfg = JavaDataFlow.create(systemPath + projectPath + inputClass);
 

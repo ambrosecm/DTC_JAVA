@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.SWT;
 import java.io.File;
+import java.io.IOException;
 
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.DirectoryDialog;
@@ -185,6 +186,7 @@ public class DtcView extends ViewPart {
 //				}
 				CFGGenerate cfg=new CFGGenerate();
 				cfg.generate(filepath);
+				
 //				DataFlowGraph dfg=new DataFlowGraph();
 //				dfg.generate(filepath);
 				
