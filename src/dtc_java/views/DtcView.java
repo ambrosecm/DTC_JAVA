@@ -175,6 +175,7 @@ public class DtcView extends ViewPart {
 				btnNewButton_1.setEnabled(false);
 				progressBar.setSelection(0);
 				String filepath=text.getText().replaceAll("\\\\","/");
+				
 //				AstGeneratror ast=new AstGeneratror();
 //				try {
 //					ast.generate(filepath);
@@ -184,6 +185,9 @@ public class DtcView extends ViewPart {
 //				}
 				CFGGenerate cfg=new CFGGenerate();
 				cfg.generate(filepath);
+//				DataFlowGraph dfg=new DataFlowGraph();
+//				dfg.generate(filepath);
+				
 				
 				
 				Runnable runnable = new Runnable() {
