@@ -27,18 +27,31 @@ public class AstGeneratror {
 //        ParseResult<VariableDeclarationExpr> exprResult = new JavaParser().parseVariableDeclarationExpr("int x = 3");
 //        System.out.println(exprResult.getResult().get());
 //        YamlPrinter printer = new YamlPrinter(true);
-//        System.out.println(printer.output(exprResult.getResult().get()));
+//        System.out.println(printer.output(result.getResult().get()));
         
 //        YamlPrinter printer = new YamlPrinter(true);
-//        System.out.println(printer.output());
+//        System.out.println(printer.output(result.getResult().get()));
 //        
 //        XmlPrinter printer = new XmlPrinter(true);
-//        System.out.println(printer.output());
+//        System.out.println(printer.output(result.getResult().get()));
 //        
-//        DotPrinter printer = new DotPrinter(true);
-//        try (FileWriter fileWriter = new FileWriter("ast.dot");
-//            PrintWriter printWriter = new PrintWriter(fileWriter)) {
-//            printWriter.print(printer.output());
-//        }
+		String split[]=filepath.split("/");
+		String arg1="";
+		for(int i=0;i<split.length-2;i++) {
+			if(i==split.length-3) {
+				arg1=arg1+split[i];
+			}else {
+				arg1=arg1+split[i]+"/";
+			}
+			
+		}
+        DotPrinter printer = new DotPrinter(true);
+        try (FileWriter fileWriter = new FileWriter(arg1+"/ast.dot");
+            PrintWriter printWriter = new PrintWriter(fileWriter)) {
+            printWriter.print(printer.output(result.getResult().get()));
+        }
+        
+        GenerateGraph g=new GenerateGraph();
+        g.genera(arg1+"/ast.dot");
 	}
 }

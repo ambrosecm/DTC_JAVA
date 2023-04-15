@@ -53,6 +53,7 @@ import org.eclipse.swt.widgets.ExpandBar;
 import org.eclipse.swt.widgets.ExpandItem;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Canvas;
 
 public class DtcView extends ViewPart {
 	public DtcView() {
@@ -113,9 +114,6 @@ public class DtcView extends ViewPart {
 		btnNewButton_1.setBounds(98, 151, 131, 27);
 		btnNewButton_1.setText("Start Analyse");
 
-		Label lblNewLabel = new Label(parent, SWT.BORDER | SWT.CENTER);
-		lblNewLabel.setBounds(41, 246, 224, 346);
-
 		Label lblNewLabel_1 = new Label(parent, SWT.BORDER | SWT.CENTER);
 		lblNewLabel_1.setBounds(272, 246, 224, 346);
 
@@ -144,6 +142,9 @@ public class DtcView extends ViewPart {
 		combo.setBounds(198, 202, 131, 28);
 		combo.select(0);
 		combo.setText("NONE");
+		
+		Canvas canvas = new Canvas(parent, SWT.NONE);
+		canvas.setBounds(41, 245, 224, 346);
 		combo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {

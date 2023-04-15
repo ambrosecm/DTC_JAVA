@@ -37,6 +37,7 @@ public class CFGGenerate extends BodyTransformer {
 	private CFGGraphType graphtype;
 	private CFGIntermediateRep ir;
 	private CFGToDotGraph drawer;
+	private String path="E:/Project/eclipse_project/DTC_JAVA/src/cfg.dot";
 
 	protected void internalTransform(Body b, String phaseName, Map options) {
 		initialize(options);
@@ -49,7 +50,6 @@ public class CFGGenerate extends BodyTransformer {
 	}
 
 	public void generate(String filepath) {
-		System.out.print(filepath);
 		String split[]=filepath.split("/");
 		String arg1="";
 		for(int i=0;i<split.length-2;i++) {
@@ -78,7 +78,14 @@ public class CFGGenerate extends BodyTransformer {
 	    soot_args[1] = arg1+";E:\\Tools\\JDK\\jdk1.7.0_80\\jre\\lib\\rt.jar";
 	    soot_args[2] = arg2;
 	    
+	    
 		soot.Main.main(soot_args);
+		
+		GenerateGraph g=new GenerateGraph();
+
+		g.genera(path);
+		
+		
 		
 	}
 
@@ -119,9 +126,9 @@ public class CFGGenerate extends BodyTransformer {
 		if (filename.length() > 0) {
 			filename = filename + java.io.File.separator;
 		}
-		filename = filename + classname + " " + methodname.replace(java.io.File.separatorChar, '.') + DotGraph.DOT_EXTENSION;
+		String pathname = filename + classname + " " + methodname.replace(java.io.File.separatorChar, '.') + DotGraph.DOT_EXTENSION;
 
-		G.v().out.println("Generate dot file in " + filename);
-		canvas.plot(filename);
+		G.v().out.println("Generate dot file in " + pathname);
+		canvas.plot(path);
 	}
 }

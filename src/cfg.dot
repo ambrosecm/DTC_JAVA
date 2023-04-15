@@ -1,0 +1,9 @@
+digraph "void <init>()" {
+    label="void <init>()";
+    node [shape=box];
+    "0" [style=filled,fillcolor=gray,label="this := @this",];
+    "1" [label="specialinvoke this.<init>()",];
+    "0"->"1";
+    "2" [style=filled,fillcolor=lightgray,label="return",];
+    "1"->"2";
+}
