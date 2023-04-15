@@ -12,14 +12,24 @@ import model.DataFlowNode;
 public class DataFlowGraph {
 
 	public void generate(String filepath) {
+		
+		String split[]=filepath.split("/");
+		String arg1="";
+		for(int i=0;i<split.length-2;i++) {
+				arg1=arg1+split[i]+"/";
+		}
+		String arg2=split[split.length-2]+"/"+split[split.length-1];
+//		String Path1 = arg1;
+//
+//	    String inputClass = arg2;
+		
 		// TODO Change this to the exact location of the project (where the .git file is located).
-	    String systemPath = "E:\\Project\\eclipse_project\\DTC_JAVA\\";
-	    System.out.println("================Don't forget to change your project path (" + systemPath + ")================");
+	    String Path1 = "E:\\Project\\eclipse_project\\DTC_JAVA\\src\\\\";
 
-	    String projectPath = "src\\";
 	    String inputClass = "example\\Example1.java";
-	    StaticJavaDataFlow.getConfig().setProjectPaths(systemPath + projectPath);
-	    model.DataFlowGraph dfg = JavaDataFlow.create(systemPath + projectPath + inputClass);
+	    
+	    StaticJavaDataFlow.getConfig().setProjectPaths(Path1);
+	    model.DataFlowGraph dfg = JavaDataFlow.create(Path1 + inputClass);
 
 	    System.out.println("================Example getting all inputs for given Node name================");
 	    String nodeName = "getA";

@@ -49,6 +49,20 @@ public class CFGGenerate extends BodyTransformer {
 	}
 
 	public void generate(String filepath) {
+		System.out.print(filepath);
+		String split[]=filepath.split("/");
+		String arg1="";
+		for(int i=0;i<split.length-2;i++) {
+			if(i==split.length-3) {
+				arg1=arg1+split[i];
+			}else {
+				arg1=arg1+split[i]+"/";
+			}
+			
+		}
+		String split2[]=split[split.length-1].split("\\.");
+		String arg2=split[split.length-2]+"."+split2[0];
+		
 		CFGGenerate viewer = new CFGGenerate();
 		Transform printTransform = new Transform("jtp.printcfg", viewer);
 		printTransform.setDeclaredOptions("enabled " + altClassPathOptionName + ' ' + graphTypeOptionName + ' '
@@ -61,8 +75,8 @@ public class CFGGenerate extends BodyTransformer {
 		String[] soot_args = new String[3];
 	    //soot_args[0] = "-cp";
 	    soot_args[0] = "--soot-classpath";
-	    soot_args[1] = "E:\\Project\\eclipse_project\\DTC_JAVA\\src;E:\\Tools\\JDK\\jdk1.7.0_80\\jre\\lib\\rt.jar";
-	    soot_args[2] = "TriangleClass.Triangle";
+	    soot_args[1] = arg1+";E:\\Tools\\JDK\\jdk1.7.0_80\\jre\\lib\\rt.jar";
+	    soot_args[2] = arg2;
 	    
 		soot.Main.main(soot_args);
 		

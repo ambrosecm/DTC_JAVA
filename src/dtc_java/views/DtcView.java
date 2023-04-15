@@ -177,18 +177,19 @@ public class DtcView extends ViewPart {
 				progressBar.setSelection(0);
 				String filepath=text.getText().replaceAll("\\\\","/");
 				
-//				AstGeneratror ast=new AstGeneratror();
-//				try {
-//					ast.generate(filepath);
-//				} catch (Exception ee) {
-//					// TODO Auto-generated catch block
-//					ee.printStackTrace();
-//				}
+				AstGeneratror ast=new AstGeneratror();
+				try {
+					ast.generate(filepath);
+				} catch (Exception ee) {
+					// TODO Auto-generated catch block
+					ee.printStackTrace();
+				}
+				
 				CFGGenerate cfg=new CFGGenerate();
 				cfg.generate(filepath);
 				
-//				DataFlowGraph dfg=new DataFlowGraph();
-//				dfg.generate(filepath);
+				DataFlowGraph dfg=new DataFlowGraph();
+				dfg.generate(filepath);
 				
 				
 				

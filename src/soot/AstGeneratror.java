@@ -18,7 +18,6 @@ import com.github.javaparser.printer.DotPrinter;
 public class AstGeneratror {
 
 	public void generate(String filepath) throws Exception {
-		System.out.print("in 1111111111111111111");
         
         // 1. java file
         String absolutePath = filepath;
