@@ -37,8 +37,11 @@ public class CFGGenerate extends BodyTransformer {
 	private CFGGraphType graphtype;
 	private CFGIntermediateRep ir;
 	private CFGToDotGraph drawer;
-	private String path="E:/Project/eclipse_project/DTC_JAVA/src/cfg.dot";
+	private String path="E:/cfg.dot";
 
+	public void setPath(String path1) {
+		path=path1;
+	}
 	protected void internalTransform(Body b, String phaseName, Map options) {
 		initialize(options);
 		System.out.println(options);
@@ -64,6 +67,7 @@ public class CFGGenerate extends BodyTransformer {
 		String arg2=split[split.length-2]+"."+split2[0];
 		
 		CFGGenerate viewer = new CFGGenerate();
+		viewer.setPath(arg1+"/cfg.dot");
 		Transform printTransform = new Transform("jtp.printcfg", viewer);
 		printTransform.setDeclaredOptions("enabled " + altClassPathOptionName + ' ' + graphTypeOptionName + ' '
 				+ irOptionName + ' ' + multipageOptionName + ' ' + briefLabelOptionName + ' ');

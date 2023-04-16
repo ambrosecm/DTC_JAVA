@@ -9,9 +9,13 @@ import org.eclipse.jface.action.*;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.*;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.SWT;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 import org.eclipse.swt.widgets.Button;
@@ -36,6 +40,9 @@ import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.wb.swt.SWTResourceManager;
+
+import com.github.javaparser.ParseResult;
+import com.github.javaparser.ast.CompilationUnit;
 
 import soot.*;
 
@@ -63,10 +70,15 @@ public class DtcView extends ViewPart {
 	 * The ID of the view as specified by the extension.
 	 */
 	public static final String ID = "dtc_java.views.DtcView";
+	private ParseResult<CompilationUnit> astresult=null;
+	private String cfgresult="";
+	private String dfgresult=null;
+	private String resultpath="";
 
 	@Inject
 	IWorkbench workbench;
 	private Text text;
+	private Text text_1;
 
 	class ViewLabelProvider extends LabelProvider implements ITableLabelProvider {
 		@Override
@@ -114,8 +126,7 @@ public class DtcView extends ViewPart {
 		btnNewButton_1.setBounds(98, 151, 131, 27);
 		btnNewButton_1.setText("Start Analyse");
 
-		Label lblNewLabel_1 = new Label(parent, SWT.BORDER | SWT.CENTER);
-		lblNewLabel_1.setBounds(272, 246, 224, 346);
+		
 
 		Label lblNewLabel_2 = new Label(parent, SWT.BORDER | SWT.WRAP);
 		lblNewLabel_2.setBackground(SWTResourceManager.getColor(255, 255, 240));
@@ -142,22 +153,30 @@ public class DtcView extends ViewPart {
 		combo.setBounds(198, 202, 131, 28);
 		combo.select(0);
 		combo.setText("NONE");
-		
-		Canvas canvas = new Canvas(parent, SWT.NONE);
+		Canvas canvas = new Canvas(parent, SWT.H_SCROLL | SWT.V_SCROLL);
 		canvas.setBounds(41, 245, 224, 346);
+		
+		
+		text_1 = new Text(parent, SWT.BORDER | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CANCEL);
+		text_1.setBounds(299, 245, 224, 346);
 		combo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				String text = combo.getText();
-				if (text.equals(items[1])) {
-					MessageBox mb = new MessageBox(Display.getCurrent().getActiveShell(), SWT.ICON_SEARCH);
-					mb.setText("Message");
-					mb.setMessage("");
-					mb.open();
-
+				Image cfgimage=new Image(Display.getDefault(),resultpath+"/cfg.png");
+				Image astimage=new Image(Display.getDefault(),resultpath+"/ast.png");
+				if (text.equals(items[0])) {
+					text_1.setText("");
+					canvas.setBackgroundImage(null);
+				} else if (text.equals(items[1])) {
+					text_1.setText(cfgresult);
+					canvas.setBackgroundImage(cfgimage);
 				} else if (text.equals(items[2])) {
-
-				} else if (text.equals(items[2])) {
+					text_1.setText(dfgresult);
+					canvas.setBackgroundImage(null);
+				} else if (text.equals(items[3])) {
+					text_1.setText(astresult.getResult().get().toString());
+					canvas.setBackgroundImage(astimage);
 
 				}
 			}
@@ -180,17 +199,35 @@ public class DtcView extends ViewPart {
 				
 				AstGeneratror ast=new AstGeneratror();
 				try {
-					ast.generate(filepath);
+					astresult=ast.generate(filepath);
 				} catch (Exception ee) {
 					// TODO Auto-generated catch block
 					ee.printStackTrace();
 				}
 				
 				CFGGenerate cfg=new CFGGenerate();
+				String split[]=filepath.split("/");
+				String arg1="";
+				for(int i=0;i<split.length-2;i++) {
+					if(i==split.length-3) {
+						arg1=arg1+split[i];
+					}else {
+						arg1=arg1+split[i]+"/";
+					}
+					
+				}
+				resultpath=arg1;
+				cfg.setPath(arg1+"/cfg.dot");
 				cfg.generate(filepath);
+				try {
+					cfgresult=fileRead(arg1+"/cfg.dot");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				DataFlowGraph dfg=new DataFlowGraph();
-				dfg.generate(filepath);
+				dfgresult=dfg.generate(filepath).toString();
 				
 				
 				
@@ -287,4 +324,18 @@ public class DtcView extends ViewPart {
 	public void setFocus() {
 
 	}
+	public String fileRead(String path) throws Exception {
+        File file = new File(path);//定义一个file对象，用来初始化FileReader
+        FileReader reader = new FileReader(file);//定义一个fileReader对象，用来初始化BufferedReader
+        BufferedReader bReader = new BufferedReader(reader);//new一个BufferedReader对象，将文件内容读取到缓存
+        StringBuilder sb = new StringBuilder();//定义一个字符串缓存，将字符串存放缓存中
+        String s = "";
+        while ((s =bReader.readLine()) != null) {//逐行读取文件内容，不读取换行符和末尾的空格
+            sb.append(s + "\n");//将读取的字符串添加换行符后累加存放在缓存中
+            System.out.println(s);
+        }
+        bReader.close();
+        String str = sb.toString();
+        return str;
+    }
 }

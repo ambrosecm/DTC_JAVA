@@ -17,7 +17,7 @@ import com.github.javaparser.printer.DotPrinter;
 
 public class AstGeneratror {
 
-	public void generate(String filepath) throws Exception {
+	public ParseResult<CompilationUnit> generate(String filepath) throws Exception {
         
         // 1. java file
         String absolutePath = filepath;
@@ -53,5 +53,6 @@ public class AstGeneratror {
         
         GenerateGraph g=new GenerateGraph();
         g.genera(arg1+"/ast.dot");
+        return result;
 	}
 }
