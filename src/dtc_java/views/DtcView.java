@@ -4,6 +4,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.*;
 import org.eclipse.jface.viewers.*;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.jface.action.*;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -133,7 +134,7 @@ public class DtcView extends ViewPart {
 		lblNewLabel_2.setFont(SWTResourceManager.getFont("Microsoft JhengHei", 7, SWT.NORMAL));
 		lblNewLabel_2.setBounds(41, 22, 529, 34);
 		lblNewLabel_2.setText("针对Java程序在代码级别进行的增加语句、修改语句、删除语句等修复操作，采用静态分析技术分析出影响的变量、语句、路径、方法、类等程序成分，生成控制流图、数据流图、抽象语法树");
-
+		
 		ProgressBar progressBar = new ProgressBar(parent, SWT.HORIZONTAL);
 		progressBar.setBounds(252, 153, 193, 23);
 		GridData data = new GridData();
@@ -153,12 +154,21 @@ public class DtcView extends ViewPart {
 		combo.setBounds(198, 202, 131, 28);
 		combo.select(0);
 		combo.setText("NONE");
-		Canvas canvas = new Canvas(parent, SWT.H_SCROLL | SWT.V_SCROLL);
-		canvas.setBounds(41, 245, 224, 346);
-		
 		
 		text_1 = new Text(parent, SWT.BORDER | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CANCEL);
-		text_1.setBounds(299, 245, 224, 346);
+		text_1.setBounds(361, 245, 224, 346);
+		
+		ScrolledComposite scrolledComposite = new ScrolledComposite(parent, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		scrolledComposite.setBounds(10, 245, 333, 346);
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
+
+		Label label = new Label(scrolledComposite, SWT.NONE);
+		label.setImage( null );
+		label.setSize( label.computeSize( SWT.DEFAULT, SWT.DEFAULT ));
+		scrolledComposite.setContent(label);
+		scrolledComposite.setMinSize(label.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		
 		combo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -167,17 +177,23 @@ public class DtcView extends ViewPart {
 				Image astimage=new Image(Display.getDefault(),resultpath+"/ast.png");
 				if (text.equals(items[0])) {
 					text_1.setText("");
-					canvas.setBackgroundImage(null);
+					label.setImage( null );
+					
 				} else if (text.equals(items[1])) {
 					text_1.setText(cfgresult);
-					canvas.setBackgroundImage(cfgimage);
+					label.setImage( cfgimage );
+					label.setSize( label.computeSize( SWT.DEFAULT, SWT.DEFAULT ));
+					scrolledComposite.setContent(label);
+					scrolledComposite.setMinSize(label.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 				} else if (text.equals(items[2])) {
 					text_1.setText(dfgresult);
-					canvas.setBackgroundImage(null);
+					label.setImage( null );
 				} else if (text.equals(items[3])) {
 					text_1.setText(astresult.getResult().get().toString());
-					canvas.setBackgroundImage(astimage);
-
+					label.setImage( astimage );
+					label.setSize( label.computeSize( SWT.DEFAULT, SWT.DEFAULT ));
+					scrolledComposite.setContent(label);
+					scrolledComposite.setMinSize(label.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 				}
 			}
 		});
