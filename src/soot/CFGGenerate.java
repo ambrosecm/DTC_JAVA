@@ -1,5 +1,6 @@
 package soot;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +38,9 @@ public class CFGGenerate extends BodyTransformer {
 	private CFGGraphType graphtype;
 	private CFGIntermediateRep ir;
 	private CFGToDotGraph drawer;
-	private String path="E:/cfg.dot";
+	private String path="E:/";
+//	private String eclipsepath="E:\\software\\eclipse4.16\\eclipse\\";
+	private String eclipsepath="E:\\software\\eclipse4.16\\eclipse\\";
 
 	public void setPath(String path1) {
 		path=path1;
@@ -53,21 +56,24 @@ public class CFGGenerate extends BodyTransformer {
 	}
 
 	public void generate(String filepath) {
+//		try {
+//			Runtime.getRuntime().exec("cmd /c rmdir /Q /S "+eclipsepath+"sootOutput");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
 		String split[]=filepath.split("/");
 		String arg1="";
 		for(int i=0;i<split.length-2;i++) {
-			if(i==split.length-3) {
-				arg1=arg1+split[i];
-			}else {
 				arg1=arg1+split[i]+"/";
-			}
-			
 		}
 		String split2[]=split[split.length-1].split("\\.");
 		String arg2=split[split.length-2]+"."+split2[0];
 		
 		CFGGenerate viewer = new CFGGenerate();
-		viewer.setPath(arg1+"/cfg.dot");
+		viewer.setPath(arg1);
 		Transform printTransform = new Transform("jtp.printcfg", viewer);
 		printTransform.setDeclaredOptions("enabled " + altClassPathOptionName + ' ' + graphTypeOptionName + ' '
 				+ irOptionName + ' ' + multipageOptionName + ' ' + briefLabelOptionName + ' ');
@@ -87,7 +93,7 @@ public class CFGGenerate extends BodyTransformer {
 		
 		GenerateGraph g=new GenerateGraph();
 
-		g.genera(path);
+		g.genera(path+"cfg.dot");
 		
 		
 		
@@ -133,6 +139,14 @@ public class CFGGenerate extends BodyTransformer {
 		String pathname = filename + classname + " " + methodname.replace(java.io.File.separatorChar, '.') + DotGraph.DOT_EXTENSION;
 
 		G.v().out.println("Generate dot file in " + pathname);
-		canvas.plot(path);
+		canvas.plot(pathname);
+		
+		try {
+			Runtime.getRuntime().exec("cmd /c copy "+eclipsepath+filename+classname+"*.dot "+path+" && "
+					+ "ren "+path+filename+classname+"*.dot cfg.dot");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
