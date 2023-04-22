@@ -40,7 +40,7 @@ public class CFGGenerate extends BodyTransformer {
 	private CFGToDotGraph drawer;
 	private String path="E:/";
 //	private String eclipsepath="E:\\software\\eclipse4.16\\eclipse\\";
-	private String eclipsepath="E:\\software\\eclipse4.16\\eclipse\\";
+	private String eclipsepath="E:\\Software\\eclipse416\\eclipse\\";
 
 	public void setPath(String path1) {
 		path=path1;
@@ -90,6 +90,7 @@ public class CFGGenerate extends BodyTransformer {
 	    
 	    
 		soot.Main.main(soot_args);
+		
 		
 		GenerateGraph g=new GenerateGraph();
 
@@ -141,9 +142,11 @@ public class CFGGenerate extends BodyTransformer {
 		G.v().out.println("Generate dot file in " + pathname);
 		canvas.plot(pathname);
 		
+		
+		
 		try {
-			Runtime.getRuntime().exec("cmd /c copy "+eclipsepath+filename+classname+"*.dot "+path+" && "
-					+ "ren "+path+filename+classname+"*.dot cfg.dot");
+			Runtime.getRuntime().exec("cmd /c copy "+eclipsepath+filename+classname+"*.dot "+path.replaceAll("/","\\\\")+" && "
+					+ "ren "+path.replaceAll("/","\\\\")+classname+"*.dot cfg.dot");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

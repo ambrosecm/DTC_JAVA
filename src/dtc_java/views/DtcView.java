@@ -233,6 +233,7 @@ public class DtcView extends ViewPart {
 					
 				}
 				resultpath=arg1;
+				System.out.println("---------------------"+arg1);
 				cfg.setPath(arg1+"/");
 				cfg.generate(filepath);
 				try {
