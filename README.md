@@ -1,2 +1,2 @@
 # DTC_JAVA
-基于代码修复对其他代码影响的静态分析
+Static analysis tool for the impact of Java-based code fixes on other code
